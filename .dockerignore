@@ -1,0 +1,14 @@
+# Dossiers lourds (Tes 44 Go)
+zindi_raw/
+data_storage/
+model_storage/
+data/
+
+# Environnement et cache
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+
+# On laisse passer tout le reste (scripts .py, etc.)

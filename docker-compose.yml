@@ -1,0 +1,115 @@
+services:
+  # Storage (Bronze/Silver/Gold)
+  minio:
+    image: minio/minio
+    container_name: agri_minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password123
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+
+  # Database for the Gold Layer
+  db:
+    image: postgres:15
+    container_name: agri_db
+    environment:
+      POSTGRES_DB: agri_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # MLflow Tracking
+  mlflow:
+    init: true
+    image: ghcr.io/mlflow/mlflow
+    container_name: agri_mlflow
+    ports:
+      - "5000:5000"
+    command: mlflow server --host 0.0.0.0
+
+  # Feature Engineering Pipeline
+  feature_pipeline:
+    build:
+      context: .
+      dockerfile: services/feature_pipeline/Dockerfile
+    container_name: agri_feature_pipeline
+    environment:
+      - PYTHONPATH=/app:/app/feature_pipeline
+      - S3_ENDPOINT_URL=http://agri_minio:9000
+      - AWS_ACCESS_KEY_ID=admin
+      - AWS_SECRET_ACCESS_KEY=password123
+      - AWS_DEFAULT_REGION=us-east-1
+    volumes:
+      - ./production:/app/production
+      - E:/mon_projet_resilience/data_storage:/app/data_storage
+    depends_on:
+      - minio
+    command: ["python", "/app/feature_pipeline/feature_pipeline/run.py"]
+
+  training_pipeline:
+    build:
+      context: .
+      dockerfile: services/training_pipeline/Dockerfile
+    container_name: agri_training_pipeline
+    environment:
+      - PYTHONPATH=/app:/app/training_pipeline
+      - S3_ENDPOINT_URL=http://agri_minio:9000
+      - AWS_ACCESS_KEY_ID=admin
+      - AWS_SECRET_ACCESS_KEY=password123
+      - AWS_DEFAULT_REGION=us-east-1
+    depends_on:
+      - feature_pipeline
+      - mlflow
+    volumes:
+      - E:/mon_projet_resilience/data_storage:/app/data_storage
+      - E:/mon_projet_resilience/model_storage:/app/model_storage
+      - ./production/src:/app/src
+    command: ["python", "training_pipeline/run.py"]
+
+  inference_api:
+    build:
+      context: .
+      dockerfile: services/inference_api/Dockerfile
+    container_name: agri_inference_api
+    ports:
+      - "8000:8000"
+    command: uvicorn app:app --host 0.0.0.0 --port 8000
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/agri_db
+      - PYTHONPATH=/app
+      - MODEL_STORAGE=/app/model_storage
+    volumes:
+      - E:/mon_projet_resilience/model_storage:/app/model_storage
+      - E:/mon_projet_resilience/data_storage:/app/data_storage
+    depends_on:
+      - db
+
+  ui_app:
+    build:
+      context: .
+      dockerfile: services/ui_app/Dockerfile
+    container_name: agri_ui_app
+    ports:
+      - "8050:8501"
+    environment:
+      - PYTHONPATH=/app:/app/ui_app
+      - INFERENCE_API_URL=http://agri_inference_api:8000 
+      - DATA_STORAGE=/app/data_storage 
+    depends_on:
+      - inference_api
+    volumes:
+      - ./services/ui_app/ui_app/app.py:/app/app.py
+      - E:/mon_projet_resilience/data_storage:/app/data_storage
+    command: ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+volumes:
+  minio_data:
+  postgres_data:

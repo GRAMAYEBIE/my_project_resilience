@@ -1,0 +1,353 @@
+2026-04-22 07:07:51 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-04-22 07:07:51 | INFO     | root | 📁 Fichier de log : C:\Users\Meschac\Desktop\mon_projet_resilience\production\logs\pipeline.log
+2026-04-22 07:07:51 | INFO     | __main__ | 🎬 Démarrage du Pipeline d'Entraînement...
+2026-04-22 07:07:51 | INFO     | src.data | 📡 Tentative de connexion au stockage S3 : s3://agri-resillience-bucket/final_scoring.parquet
+2026-04-22 07:07:52 | ERROR    | src.data | ❌ Échec critique du chargement des données : Bucket 'agri-resillience-bucket' not found
+2026-04-22 07:07:52 | ERROR    | __main__ | 💥 Le pipeline a échoué : Bucket 'agri-resillience-bucket' not found
+Traceback (most recent call last):
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\run_pipeline.py", line 103, in main
+    args.func(args)
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\run_pipeline.py", line 26, in train_pipeline
+    df_raw = data_mgr.load_from_s3()
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\src\data.py", line 27, in load_from_s3
+    df = pd.read_parquet(self.s3_path)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 669, in read_parquet
+    return impl.read(
+           ^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 258, in read
+    path_or_handle, handles, filesystem = _get_path_or_handle(
+                                          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 118, in _get_path_or_handle
+    fs, path_or_handle = pa_fs.FileSystem.from_uri(path)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/_fs.pyx", line 503, in pyarrow._fs.FileSystem.from_uri
+  File "pyarrow/_fs.pyx", line 457, in pyarrow._fs.FileSystem._native_from_uri
+  File "pyarrow/error.pxi", line 155, in pyarrow.lib.pyarrow_internal_check_status
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+OSError: Bucket 'agri-resillience-bucket' not found
+2026-04-22 07:58:04 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-04-22 07:58:04 | INFO     | root | 📁 Fichier de log : C:\Users\Meschac\Desktop\mon_projet_resilience\production\logs\pipeline.log
+2026-04-22 07:58:04 | INFO     | __main__ | 🎬 Démarrage du Pipeline d'Entraînement...
+2026-04-22 07:58:04 | INFO     | src.data | 📡 Tentative de connexion au stockage S3 : s3://agri-resillience-bucket/final_scoring.parquet
+2026-04-22 07:58:06 | ERROR    | src.data | ❌ Échec critique du chargement des données : Bucket 'agri-resillience-bucket' not found
+2026-04-22 07:58:06 | ERROR    | __main__ | 💥 Le pipeline a échoué : Bucket 'agri-resillience-bucket' not found
+Traceback (most recent call last):
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\run_pipeline.py", line 103, in main
+    args.func(args)
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\run_pipeline.py", line 26, in train_pipeline
+    df_raw = data_mgr.load_from_s3()
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\src\data.py", line 27, in load_from_s3
+    df = pd.read_parquet(self.s3_path)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 669, in read_parquet
+    return impl.read(
+           ^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 258, in read
+    path_or_handle, handles, filesystem = _get_path_or_handle(
+                                          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 118, in _get_path_or_handle
+    fs, path_or_handle = pa_fs.FileSystem.from_uri(path)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/_fs.pyx", line 503, in pyarrow._fs.FileSystem.from_uri
+  File "pyarrow/_fs.pyx", line 457, in pyarrow._fs.FileSystem._native_from_uri
+  File "pyarrow/error.pxi", line 155, in pyarrow.lib.pyarrow_internal_check_status
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+OSError: Bucket 'agri-resillience-bucket' not found
+2026-04-22 08:00:44 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-04-22 08:00:44 | INFO     | root | 📁 Fichier de log : C:\Users\Meschac\Desktop\mon_projet_resilience\production\logs\pipeline.log
+2026-04-22 08:00:44 | INFO     | __main__ | 🎬 Démarrage du Pipeline d'Entraînement...
+2026-04-22 08:00:44 | INFO     | src.data | 📡 Connexion au Minio local : http://127.0.0.1:9000
+2026-04-22 08:00:49 | ERROR    | src.data | ❌ Impossible de joindre Minio : Forbidden
+2026-04-22 08:00:49 | ERROR    | __main__ | 💥 Le pipeline a échoué : Forbidden
+Traceback (most recent call last):
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\s3fs\core.py", line 169, in _error_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\context.py", line 36, in wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\client.py", line 424, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (403) when calling the HeadObject operation: Forbidden
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\run_pipeline.py", line 103, in main
+    args.func(args)
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\run_pipeline.py", line 26, in train_pipeline
+    df_raw = data_mgr.load_from_s3()
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\src\data.py", line 33, in load_from_s3
+    df = pd.read_parquet(self.s3_path, storage_options=storage_options)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 669, in read_parquet
+    return impl.read(
+           ^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 265, in read
+    pa_table = self.api.parquet.read_table(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pyarrow\parquet\core.py", line 1858, in read_table
+    dataset = ParquetDataset(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pyarrow\parquet\core.py", line 1415, in __init__
+    finfo = filesystem.get_file_info(path_or_paths)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/_fs.pyx", line 616, in pyarrow._fs.FileSystem.get_file_info
+  File "pyarrow/error.pxi", line 155, in pyarrow.lib.pyarrow_internal_check_status
+  File "pyarrow/error.pxi", line 89, in pyarrow.lib.check_status
+  File "pyarrow/_fs.pyx", line 1523, in pyarrow._fs._cb_get_file_info
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pyarrow\fs.py", line 319, in get_file_info
+    info = self.fs.info(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\fsspec\asyn.py", line 118, in wrapper
+    return sync(self.loop, func, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\fsspec\asyn.py", line 103, in sync
+    raise return_result
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\fsspec\asyn.py", line 56, in _runner
+    result[0] = await coro
+                ^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\s3fs\core.py", line 1732, in _info
+    out = await self._call_s3(
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\s3fs\core.py", line 460, in _call_s3
+    return await _error_wrapper(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\s3fs\core.py", line 215, in _error_wrapper
+    raise err
+PermissionError: Forbidden
+2026-04-22 08:06:33 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-04-22 08:06:33 | INFO     | root | 📁 Fichier de log : C:\Users\Meschac\Desktop\mon_projet_resilience\production\logs\pipeline.log
+2026-04-22 08:06:33 | INFO     | __main__ | 🎬 Démarrage du Pipeline d'Entraînement...
+2026-04-22 08:06:33 | INFO     | src.data | 📡 Connexion au Minio local : http://127.0.0.1:9000
+2026-04-22 08:06:36 | INFO     | src.data | ✅ Données chargées avec succès : 2977 lignes
+2026-04-22 08:06:36 | INFO     | src.data | 🩹 Imputation : Médiane appliquée sur 'final_precipitation' (81.88631147540983)
+2026-04-22 08:06:36 | INFO     | src.data | ⚖️ Split terminé (Stratifié) | Train: 2381 - Test: 596
+2026-04-22 08:06:36 | INFO     | src.preprocess | 🛠️ Preprocessor initialisé (Scaler & LabelEncoder prêts).
+2026-04-22 08:06:36 | INFO     | src.preprocess | 🧪 Apprentissage des paramètres de transformation (Fit)...
+2026-04-22 08:06:36 | INFO     | src.preprocess | ✅ Apprentissage terminé. Classes : ['HIGH_RISK', 'PREMIUM_ELIGIBLE', 'STANDARD_ELIGIBLE']
+2026-04-22 08:06:36 | INFO     | src.train | 🏗️ Initialisation du ModelTrainer (Architecture: VotingClassifier)
+2026-04-22 08:06:36 | INFO     | src.train | ⚖️ Application du SMOTE pour équilibrer les classes...
+2026-04-22 08:06:40 | INFO     | src.train | 🏋️ Entraînement du VotingClassifier en cours...
+2026-04-22 08:06:45 | INFO     | src.train | ✅ Entraînement terminé.
+2026-04-22 08:06:45 | INFO     | src.evaluate | 📊 Calcul des performances du modèle...
+2026-04-22 08:06:45 | INFO     | src.evaluate | ⭐ Overall Accuracy: 0.8691
+2026-04-22 08:06:45 | INFO     | src.evaluate | ⭐ Weighted F1-Score: 0.8769
+2026-04-22 08:06:45 | INFO     | src.artifacts | 💾 Sauvegarde du modèle champion : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\voting_model_champion.joblib
+2026-04-22 08:06:45 | INFO     | src.artifacts | 📏 Sauvegarde du scaler : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\scaler.joblib
+2026-04-22 08:06:45 | INFO     | src.artifacts | 🏷️ Sauvegarde du LabelEncoder : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\label_encoder.joblib
+2026-04-22 08:06:45 | INFO     | src.artifacts | 📊 Sauvegarde des métriques : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\metrics.json
+2026-04-22 08:06:45 | INFO     | __main__ | ✅ Pipeline terminé. Tous les artifacts sont dans : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts
+2026-04-22 08:10:34 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-04-22 08:10:34 | INFO     | root | 📁 Fichier de log : C:\Users\Meschac\Desktop\mon_projet_resilience\production\logs\pipeline.log
+2026-04-22 08:10:34 | INFO     | __main__ | 🔮 Démarrage du Pipeline de Prédiction...
+2026-04-22 08:10:34 | INFO     | src.artifacts | 📂 Chargement du modèle : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\voting_model_champion.joblib
+2026-04-22 08:10:34 | INFO     | src.artifacts | 📂 Chargement du scaler : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\scaler.joblib
+2026-04-22 08:10:34 | INFO     | src.artifacts | 📂 Chargement du LabelEncoder : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\label_encoder.joblib
+2026-04-22 08:10:34 | INFO     | src.data | 📡 Connexion au Minio local : http://127.0.0.1:9000
+2026-04-22 08:10:38 | INFO     | src.data | ✅ Données chargées avec succès : 2977 lignes
+2026-04-23 03:55:47 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-04-23 03:55:47 | INFO     | root | 📁 Fichier de log : C:\Users\Meschac\Desktop\mon_projet_resilience\production\logs\pipeline.log
+2026-04-23 03:55:47 | INFO     | __main__ | 🎬 Démarrage du Pipeline d'Entraînement...
+2026-04-23 03:55:47 | INFO     | src.data | 📡 Connexion au Minio local : http://172.19.0.3:9000
+2026-04-23 03:56:22 | ERROR    | src.data | ❌ Impossible de joindre Minio : Connect timeout on endpoint URL: "http://172.19.0.3:9000/agri-resillience-bucket/final_scoring.parquet"
+2026-04-23 03:56:22 | ERROR    | __main__ | 💥 Le pipeline a échoué : Connect timeout on endpoint URL: "http://172.19.0.3:9000/agri-resillience-bucket/final_scoring.parquet"
+Traceback (most recent call last):
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\connector.py", line 1310, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohappyeyeballs\impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohappyeyeballs\impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "C:\Users\Meschac\AppData\Local\Programs\Python\Python311\Lib\asyncio\proactor_events.py", line 726, in sock_connect
+    return await self._proactor.connect(sock, address)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\connector.py", line 1623, in _create_direct_connection
+    raise last_exc
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\connector.py", line 1592, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\connector.py", line 1307, in _wrap_create_connection
+    async with ceil_timeout(
+  File "C:\Users\Meschac\AppData\Local\Programs\Python\Python311\Lib\asyncio\timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\httpsession.py", line 230, in send
+    response = await session.request(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiohttp\client.py", line 746, in _connect_and_send_request
+    raise ConnectionTimeoutError(
+aiohttp.client_exceptions.ConnectionTimeoutError: Connection timeout to host http://172.19.0.3:9000/agri-resillience-bucket/final_scoring.parquet
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\run_pipeline.py", line 103, in main
+    args.func(args)
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\run_pipeline.py", line 26, in train_pipeline
+    df_raw = data_mgr.load_from_s3()
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\production\src\data.py", line 39, in load_from_s3
+    df = pd.read_parquet(self.s3_path, storage_options=storage_options)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 669, in read_parquet
+    return impl.read(
+           ^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pandas\io\parquet.py", line 265, in read
+    pa_table = self.api.parquet.read_table(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pyarrow\parquet\core.py", line 1858, in read_table
+    dataset = ParquetDataset(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pyarrow\parquet\core.py", line 1415, in __init__
+    finfo = filesystem.get_file_info(path_or_paths)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/_fs.pyx", line 616, in pyarrow._fs.FileSystem.get_file_info
+  File "pyarrow/error.pxi", line 155, in pyarrow.lib.pyarrow_internal_check_status
+  File "pyarrow/error.pxi", line 89, in pyarrow.lib.check_status
+  File "pyarrow/_fs.pyx", line 1523, in pyarrow._fs._cb_get_file_info
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\pyarrow\fs.py", line 319, in get_file_info
+    info = self.fs.info(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\fsspec\asyn.py", line 118, in wrapper
+    return sync(self.loop, func, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\fsspec\asyn.py", line 103, in sync
+    raise return_result
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\fsspec\asyn.py", line 56, in _runner
+    result[0] = await coro
+                ^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\s3fs\core.py", line 1732, in _info
+    out = await self._call_s3(
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\s3fs\core.py", line 460, in _call_s3
+    return await _error_wrapper(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\s3fs\core.py", line 215, in _error_wrapper
+    raise err
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\s3fs\core.py", line 169, in _error_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\context.py", line 36, in wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\client.py", line 406, in _make_api_call
+    http, parsed_response = await self._make_request(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\client.py", line 432, in _make_request
+    return await self._endpoint.make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\endpoint.py", line 120, in _send_request
+    while await self._needs_retry(
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\endpoint.py", line 280, in _needs_retry
+    responses = await self._event_emitter.emit(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\hooks.py", line 68, in _emit
+    response = await resolve_awaitable(handler(**kwargs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\_helpers.py", line 6, in resolve_awaitable
+    return await obj
+           ^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\retryhandler.py", line 107, in _call
+    if await resolve_awaitable(self._checker(**checker_kwargs)):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\_helpers.py", line 6, in resolve_awaitable
+    return await obj
+           ^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\retryhandler.py", line 126, in _call
+    should_retry = await self._should_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\retryhandler.py", line 165, in _should_retry
+    return await resolve_awaitable(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\_helpers.py", line 6, in resolve_awaitable
+    return await obj
+           ^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\retryhandler.py", line 174, in _call
+    checker(attempt_number, response, caught_exception)
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\botocore\retryhandler.py", line 247, in __call__
+    return self._check_caught_exception(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\botocore\retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\endpoint.py", line 201, in _do_get_response
+    http_response = await self._send(request)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\endpoint.py", line 303, in _send
+    return await self.http_session.send(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Meschac\Desktop\mon_projet_resilience\.venv\Lib\site-packages\aiobotocore\httpsession.py", line 276, in send
+    raise ConnectTimeoutError(endpoint_url=request.url, error=e)
+botocore.exceptions.ConnectTimeoutError: Connect timeout on endpoint URL: "http://172.19.0.3:9000/agri-resillience-bucket/final_scoring.parquet"
+2026-04-23 04:30:14 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-04-23 04:30:14 | INFO     | root | 📁 Fichier de log : C:\Users\Meschac\Desktop\mon_projet_resilience\production\logs\pipeline.log
+2026-04-23 04:30:14 | INFO     | __main__ | 🎬 Démarrage du Pipeline d'Entraînement...
+2026-04-23 04:30:14 | INFO     | src.data | 📡 Connexion au Minio local : http://172.19.0.3:9000
+2026-04-23 04:30:19 | INFO     | src.data | ✅ Données chargées avec succès : 2977 lignes
+2026-04-23 04:30:19 | INFO     | src.data | 🩹 Imputation : Médiane appliquée sur 'final_precipitation' (81.88631147540983)
+2026-04-23 04:30:19 | INFO     | src.data | ⚖️ Split terminé (Stratifié) | Train: 2381 - Test: 596
+2026-04-23 04:30:19 | INFO     | src.preprocess | 🛠️ Preprocessor initialisé (Scaler & LabelEncoder prêts).
+2026-04-23 04:30:19 | INFO     | src.preprocess | 🧪 Apprentissage des paramètres de transformation (Fit)...
+2026-04-23 04:30:19 | INFO     | src.preprocess | ✅ Apprentissage terminé. Classes : ['HIGH_RISK', 'PREMIUM_ELIGIBLE', 'STANDARD_ELIGIBLE']
+2026-04-23 04:30:19 | INFO     | src.train | 🏗️ Initialisation du ModelTrainer (Architecture: VotingClassifier)
+2026-04-23 04:30:19 | INFO     | src.train | ⚖️ Application du SMOTE pour équilibrer les classes...
+2026-04-23 04:30:22 | INFO     | src.train | 🏋️ Entraînement du VotingClassifier en cours...
+2026-04-23 04:30:28 | INFO     | src.train | ✅ Entraînement terminé.
+2026-04-23 04:30:28 | INFO     | src.evaluate | 📊 Calcul des performances du modèle...
+2026-04-23 04:30:28 | INFO     | src.evaluate | ⭐ Overall Accuracy: 0.8691
+2026-04-23 04:30:28 | INFO     | src.evaluate | ⭐ Weighted F1-Score: 0.8769
+2026-04-23 04:30:28 | INFO     | src.artifacts | 💾 Sauvegarde du modèle champion : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\voting_model_champion.joblib
+2026-04-23 04:30:28 | INFO     | src.artifacts | 📏 Sauvegarde du scaler : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\scaler.joblib
+2026-04-23 04:30:28 | INFO     | src.artifacts | 🏷️ Sauvegarde du LabelEncoder : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\label_encoder.joblib
+2026-04-23 04:30:28 | INFO     | src.artifacts | 📊 Sauvegarde des métriques : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts\metrics.json
+2026-04-23 04:30:28 | INFO     | __main__ | ✅ Pipeline terminé. Tous les artifacts sont dans : C:\Users\Meschac\Desktop\mon_projet_resilience\production\artifacts
+2026-04-25 20:10:58 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-04-25 20:10:58 | INFO     | root | 📁 Fichier de log : E:\mon_projet_resilience\production\logs\pipeline.log
+2026-04-25 20:10:58 | INFO     | __main__ | 🎬 Démarrage du Pipeline d'Entraînement...
+2026-04-25 20:10:58 | INFO     | src.data | 📡 Connexion au Minio local : http://172.19.0.3:9000
+2026-04-25 20:11:03 | INFO     | src.data | ✅ Données chargées avec succès : 2977 lignes
+2026-04-25 20:11:03 | INFO     | src.data | 🩹 Imputation : Médiane appliquée sur 'final_precipitation' (81.88631147540983)
+2026-04-25 20:11:03 | INFO     | src.data | ⚖️ Split terminé (Stratifié) | Train: 2381 - Test: 596
+2026-04-25 20:11:03 | INFO     | src.preprocess | 🛠️ Preprocessor initialisé (Scaler & LabelEncoder prêts).
+2026-04-25 20:11:03 | INFO     | src.preprocess | 🧪 Apprentissage des paramètres de transformation (Fit)...
+2026-04-25 20:11:03 | INFO     | src.preprocess | ✅ Apprentissage terminé. Classes : ['HIGH_RISK', 'PREMIUM_ELIGIBLE', 'STANDARD_ELIGIBLE']
+2026-04-25 20:11:03 | INFO     | src.train | 🏗️ Initialisation du ModelTrainer (Architecture: VotingClassifier)
+2026-04-25 20:11:03 | INFO     | src.train | ⚖️ Application du SMOTE pour équilibrer les classes...
+2026-04-25 20:11:07 | INFO     | src.train | 🏋️ Entraînement du VotingClassifier en cours...
+2026-04-25 20:11:10 | INFO     | src.train | ✅ Entraînement terminé.
+2026-04-25 20:11:10 | INFO     | src.evaluate | 📊 Calcul des performances du modèle...
+2026-04-25 20:11:10 | INFO     | src.evaluate | ⭐ Overall Accuracy: 0.8691
+2026-04-25 20:11:10 | INFO     | src.evaluate | ⭐ Weighted F1-Score: 0.8769
+2026-04-25 20:11:10 | INFO     | src.artifacts | 💾 Sauvegarde du modèle champion : E:\mon_projet_resilience\production\artifacts\voting_model_champion.joblib
+2026-04-25 20:11:10 | INFO     | src.artifacts | 📏 Sauvegarde du scaler : E:\mon_projet_resilience\production\artifacts\scaler.joblib
+2026-04-25 20:11:10 | INFO     | src.artifacts | 🏷️ Sauvegarde du LabelEncoder : E:\mon_projet_resilience\production\artifacts\label_encoder.joblib
+2026-04-25 20:11:10 | INFO     | src.artifacts | 📊 Sauvegarde des métriques : E:\mon_projet_resilience\production\artifacts\metrics.json
+2026-04-25 20:11:10 | INFO     | __main__ | ✅ Pipeline terminé. Tous les artifacts sont dans : E:\mon_projet_resilience\production\artifacts

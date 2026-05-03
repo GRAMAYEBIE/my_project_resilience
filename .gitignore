@@ -1,0 +1,23 @@
+# Environnement virtuel
+.venv/
+__pycache__/
+*.pyc
+
+# Docker WSL & VHDX
+DockerDesktopWSL/
+*.vhdx
+
+# ZenML & MLflow local
+.zen/
+! .zen/config.yaml
+mlruns/
+outputs/
+
+# Données locales (car elles sont déjà sur MinIO)
+data/
+*.csv
+*.xlsx
+
+# Configuration et secrets
+.env
+.secrets
