@@ -12,6 +12,11 @@ services:
     volumes:
       - minio_data:/data
     command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   # Database for the Gold Layer
   db:
@@ -42,16 +47,18 @@ services:
       dockerfile: services/feature_pipeline/Dockerfile
     container_name: agri_feature_pipeline
     environment:
-      - PYTHONPATH=/app:/app/feature_pipeline
-      - S3_ENDPOINT_URL=http://agri_minio:9000
+      - PYTHONPATH=/app:/app/production:/app/feature_pipeline
+      - S3_ENDPOINT_URL=http://minio:9000
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password123
       - AWS_DEFAULT_REGION=us-east-1
     volumes:
       - ./production:/app/production
+      - ./artifacts:/app/artifacts
       - E:/mon_projet_resilience/data_storage:/app/data_storage
     depends_on:
-      - minio
+      minio:
+        condition: service_healthy
     command: ["python", "/app/feature_pipeline/feature_pipeline/run.py"]
 
   training_pipeline:
@@ -61,17 +68,21 @@ services:
     container_name: agri_training_pipeline
     environment:
       - PYTHONPATH=/app:/app/training_pipeline
-      - S3_ENDPOINT_URL=http://agri_minio:9000
+      - S3_ENDPOINT_URL=http://minio:9000  # <--- CORRIGÉ (était agri_minio)
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password123
       - AWS_DEFAULT_REGION=us-east-1
     depends_on:
-      - feature_pipeline
-      - mlflow
+      feature_pipeline:
+        condition: service_completed_successfully
+      mlflow:
+        condition: service_started
     volumes:
-      - E:/mon_projet_resilience/data_storage:/app/data_storage
+      # On garde une source UNIQUE pour la cohérence
+      - E:/mon_projet_resilience/data_storage:/app/data_storage 
       - E:/mon_projet_resilience/model_storage:/app/model_storage
       - ./production/src:/app/src
+      - ./artifacts:/app/artifacts
     command: ["python", "training_pipeline/run.py"]
 
   inference_api:

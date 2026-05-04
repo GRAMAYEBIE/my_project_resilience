@@ -40,3 +40,4 @@ def setup_logging(level: str = "INFO") -> logging.Logger:
     logging.info(f"📁 Fichier de log : {log_file}")
     
     return logger
+

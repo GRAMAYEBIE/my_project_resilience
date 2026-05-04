@@ -4,6 +4,8 @@ from imblearn.over_sampling import SMOTE
 from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 from xgboost import XGBClassifier
 from sklearn.linear_model import LogisticRegression
+import mlflow  # <--- AJOUT
+import mlflow.sklearn
 
 from src.config import paths, model_cfg
 
@@ -14,6 +16,8 @@ class ModelTrainer:
         """Initialise le Champion (VotingClassifier) avec les réglages du config."""
         logger.info("🏗️ Initialisation du ModelTrainer (Architecture: VotingClassifier)")
         
+        mlflow.set_tracking_uri("http://localhost:5000")
+        mlflow.set_experiment("Agri_Resilience_Production")
         # 1. SMOTE pour gérer le déséquilibre (Premium class)
         self.smote = SMOTE(
             k_neighbors=model_cfg.k_neighbors_smote, 
@@ -36,13 +40,23 @@ class ModelTrainer:
         )
 
     def train(self, X_train, y_train):
-        """Applique SMOTE et entraîne le VotingClassifier."""
-        logger.info("⚖️ Application du SMOTE pour équilibrer les classes...")
-        X_res, y_res = self.smote.fit_resample(X_train, y_train)
-        
-        logger.info("🏋️ Entraînement du VotingClassifier en cours...")
-        self.model.fit(X_res, y_res)
-        logger.info("✅ Entraînement terminé.")
+        """Applique SMOTE et entraîne le VotingClassifier avec tracking MLflow."""
+        # On démarre le run MLflow ici
+        with mlflow.start_run(run_name="Production_Training"):
+            
+            # Log des hyperparamètres depuis ta config
+            mlflow.log_params(model_cfg.rf_params)
+            mlflow.log_param("smote_k_neighbors", model_cfg.k_neighbors_smote)
+
+            logger.info("⚖️ Application du SMOTE...")
+            X_res, y_res = self.smote.fit_resample(X_train, y_train)
+            
+            logger.info("🏋️ Entraînement du VotingClassifier...")
+            self.model.fit(X_res, y_res)
+            
+            # Log du modèle dans MLflow
+            mlflow.sklearn.log_model(self.model, "champion_model")
+            logger.info("✅ Entraînement terminé et loggé sur MLflow.")
 
     def save_model(self):
         """Sauvegarde le modèle entraîné."""

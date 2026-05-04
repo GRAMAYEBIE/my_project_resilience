@@ -24,7 +24,6 @@ jupyter
 seaborn
 matplotlib
 imbalanced-learn
-s3fs
 dash 
 dash-bootstrap-components 
 plotly  
@@ -32,3 +31,6 @@ requests
 mlflow
 xgboost
 gTTS
+s3fs==2023.12.2
+aiobotocore==2.11.0
+botocore==1.33.2

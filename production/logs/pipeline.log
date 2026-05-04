@@ -351,3 +351,25 @@ botocore.exceptions.ConnectTimeoutError: Connect timeout on endpoint URL: "http:
 2026-04-25 20:11:10 | INFO     | src.artifacts | 🏷️ Sauvegarde du LabelEncoder : E:\mon_projet_resilience\production\artifacts\label_encoder.joblib
 2026-04-25 20:11:10 | INFO     | src.artifacts | 📊 Sauvegarde des métriques : E:\mon_projet_resilience\production\artifacts\metrics.json
 2026-04-25 20:11:10 | INFO     | __main__ | ✅ Pipeline terminé. Tous les artifacts sont dans : E:\mon_projet_resilience\production\artifacts
+2026-05-03 13:34:50 | INFO     | root | 🚀 Logging initialisé [Niveau: INFO]
+2026-05-03 13:34:50 | INFO     | root | 📁 Fichier de log : E:\mon_projet_resilience\production\logs\pipeline.log
+2026-05-03 13:34:50 | INFO     | __main__ | 🎬 Démarrage du Pipeline d'Entraînement...
+2026-05-03 13:34:50 | INFO     | src.data | 📡 Connexion au Minio local : http://172.19.0.3:9000
+2026-05-03 13:34:53 | INFO     | src.data | ✅ Données chargées avec succès : 2977 lignes
+2026-05-03 13:34:53 | INFO     | src.data | 🩹 Imputation : Médiane appliquée sur 'final_precipitation' (81.88631147540983)
+2026-05-03 13:34:53 | INFO     | src.data | ⚖️ Split terminé (Stratifié) | Train: 2381 - Test: 596
+2026-05-03 13:34:53 | INFO     | src.preprocess | 🛠️ Preprocessor initialisé (Scaler & LabelEncoder prêts).
+2026-05-03 13:34:53 | INFO     | src.preprocess | 🧪 Apprentissage des paramètres de transformation (Fit)...
+2026-05-03 13:34:53 | INFO     | src.preprocess | ✅ Apprentissage terminé. Classes : ['HIGH_RISK', 'PREMIUM_ELIGIBLE', 'STANDARD_ELIGIBLE']
+2026-05-03 13:34:53 | INFO     | src.train | 🏗️ Initialisation du ModelTrainer (Architecture: VotingClassifier)
+2026-05-03 13:34:53 | INFO     | src.train | ⚖️ Application du SMOTE pour équilibrer les classes...
+2026-05-03 13:34:55 | INFO     | src.train | 🏋️ Entraînement du VotingClassifier en cours...
+2026-05-03 13:35:02 | INFO     | src.train | ✅ Entraînement terminé.
+2026-05-03 13:35:03 | INFO     | src.evaluate | 📊 Calcul des performances du modèle...
+2026-05-03 13:35:03 | INFO     | src.evaluate | ⭐ Overall Accuracy: 0.8691
+2026-05-03 13:35:03 | INFO     | src.evaluate | ⭐ Weighted F1-Score: 0.8769
+2026-05-03 13:35:03 | INFO     | src.artifacts | 💾 Sauvegarde du modèle champion : E:\mon_projet_resilience\production\artifacts\voting_model_champion.joblib
+2026-05-03 13:35:03 | INFO     | src.artifacts | 📏 Sauvegarde du scaler : E:\mon_projet_resilience\production\artifacts\scaler.joblib
+2026-05-03 13:35:03 | INFO     | src.artifacts | 🏷️ Sauvegarde du LabelEncoder : E:\mon_projet_resilience\production\artifacts\label_encoder.joblib
+2026-05-03 13:35:03 | INFO     | src.artifacts | 📊 Sauvegarde des métriques : E:\mon_projet_resilience\production\artifacts\metrics.json
+2026-05-03 13:35:03 | INFO     | __main__ | ✅ Pipeline terminé. Tous les artifacts sont dans : E:\mon_projet_resilience\production\artifacts

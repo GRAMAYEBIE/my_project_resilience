@@ -11,6 +11,7 @@ from sklearn.ensemble import VotingClassifier, RandomForestClassifier
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
+from imblearn.over_sampling import RandomOverSampler
 
 # --- CONFIGURATION ---
 DATA_STORAGE = Path(os.environ.get("DATA_STORAGE", "./data_storage"))
@@ -25,11 +26,6 @@ def main() -> None:
     labels_path = processed / "train_labels.csv"
     pre_blueprint_path = MODEL_STORAGE / "preprocessor_blueprint.joblib"
 
-    # 1. Vérifications de sécurité
-    if not all([features_path.exists(), labels_path.exists(), pre_blueprint_path.exists()]):
-        logger.error("❌ Artifacts manquants. Lancez d'abord le 'feature_pipeline'.")
-        return
-
     MODEL_STORAGE.mkdir(parents=True, exist_ok=True)
 
     # 2. Chargement des données
@@ -43,7 +39,12 @@ def main() -> None:
 
     # 4. Prétraitement (Fit sur Train uniquement)
     logger.info("🧪 Application du prétraitement...")
-    preprocessor = joblib.load(pre_blueprint_path)
+    artifacts = joblib.load(pre_blueprint_path)
+    if isinstance(artifacts, dict):
+        preprocessor = artifacts.get("scaler") # ou artifacts.get("preprocessor") selon ton nom
+        logger.info("✅ Scaler extrait du dictionnaire d'artefacts.")
+    else:
+        preprocessor = artifacts
     X_train_scaled = preprocessor.fit_transform(X_train)
     X_test_scaled = preprocessor.transform(X_test)
 

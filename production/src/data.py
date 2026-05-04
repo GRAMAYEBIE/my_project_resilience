@@ -27,8 +27,9 @@ class DataManager:
                 "key": storage_cfg.S3_ACCESS_KEY,
                 "secret": storage_cfg.S3_SECRET_KEY,
                 "client_kwargs": {
-                    "endpoint_url": "http://127.0.0.1:9000",
-                    "region_name": "us-east-1",
+                    "endpoint_url": "http://minio:9000",
+                    "region_name": "us-east-1"
+                    
                 },
                 "config_kwargs": {
                     "s3": {"addressing_style": "path"} # Important pour MinIO

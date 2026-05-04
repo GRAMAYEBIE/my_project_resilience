@@ -1,4 +1,7 @@
 {
-    "accuracy": 0.8691,
-    "f1_weighted": 0.8769
+    "accuracy": 0.9546191247974068,
+    "model_type": "VotingClassifier(RF, XGB)",
+    "training_date": "2026-05-04T12:39:39.098825+00:00",
+    "n_samples_train": 4935,
+    "target_column": "loan_status"
 }

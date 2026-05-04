@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 @step
 def sync_production_artifacts() -> None:
-    """
+    """ 
     Récupère les artifacts déjà générés par la phase d'entraînement 'production' 
     pour les rendre disponibles aux services Docker (Inference, UI).
     """
